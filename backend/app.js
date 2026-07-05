@@ -43,7 +43,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://lms-7dlpet0s9-kcgdevelopers-2253s-projects.vercel.app"
+      "https://lms-sandy-one-43.vercel.app"
     ],
     credentials: true,
   })
