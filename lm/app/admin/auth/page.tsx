@@ -22,7 +22,7 @@ export default function AdminLogin() {
     try {
       setLoading(true);
 
-     const res = await fetch(ENDPOINTS.LOGIN, {
+     const res = await fetch(ENDPOINTS.ADMIN_LOGIN, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

@@ -15,8 +15,7 @@ import {
 } from "react-icons/fi";
 
 import { useRouter } from "next/navigation";
-import { API_BASE_URL } from "../../../lib/api.js";
-
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 import { MdStore } from "react-icons/md";
 
 export default function Sidebar() {
@@ -28,10 +27,10 @@ export default function Sidebar() {
 
 const handleLogout = async () => {
   try {
-    await fetch(`${API_BASE_URL}/api/admin/logout`, {
-      method: "POST",
-      credentials: "include",
-    });
+    await fetch(ENDPOINTS.ADMIN_LOGOUT, {
+  method: "POST",
+  credentials: "include",
+});
 
     router.push("/admin/auth");
   } catch (err) {
