@@ -167,6 +167,7 @@ export default function PurchaseEntryPage() {
 
   alert("Saved successfully!");
 
+
 const now = new Date();
 
 const formattedDate = now.toLocaleDateString("en-IN");
@@ -175,32 +176,28 @@ const formattedTime = now.toLocaleTimeString("en-IN", {
   minute: "2-digit",
 });
 
-const message =
-`✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
+const message = [
+  "✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨",
+  "",
+  `📅 Date: ${formattedDate}`,
+  `⏰ Time: ${formattedTime}`,
+  "",
+  `👤 Customer: ${selectedCustomer?.name}`,
+  `🧾 Bill No: ${form.bill_number}`,
+  `💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}`,
+  `⭐ Loyalty Points: ${form.reward_points}`,
+  `💳 Card No: ${selectedCustomer?.card_no}`,
+  "",
+  "🙏 Thank you for shopping with us 💛"
+].join("\n");
 
-📅 Date: ${formattedDate}
-⏰ Time: ${formattedTime}
-
-👤 Customer: ${selectedCustomer?.name}
-🧾 Bill No: ${form.bill_number}
-💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
-⭐ Loyalty Points: ${form.reward_points}
-💳 Card No: ${selectedCustomer?.card_no}
-
-🙏 Thank you for shopping with us 💛`;
-
-// IMPORTANT FIX HERE 👇
 const phone = `91${mobile}`;
 
-const params = new URLSearchParams({
-  phone,
-  text: message
-});
+// ✅ THIS OPENS WHATSAPP APP ON MOBILE
+const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-// force WhatsApp Web only
-const url = `https://web.whatsapp.com/send?${params.toString()}`;
-
-window.open(url, "_blank", "noopener,noreferrer");
+// open in same tab OR new tab (both work)
+window.location.href = url;
 
 
   setMobile("");
