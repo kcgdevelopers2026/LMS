@@ -31,7 +31,7 @@ export const ENDPOINTS = {
 
   // ================= REDEEMS =================
   REDEEMS: `${API_BASE_URL}/api/redeems`,
-  REDEEMS_BY_CUSTOMER: (id) =>
+  REDEEM_BY_CUSTOMER: (id) =>
     `${API_BASE_URL}/api/redeems/customer/${id}`,
 
   // ================= REPORTS =================
