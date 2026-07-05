@@ -132,7 +132,7 @@ export default function CustomerDetails() {
   const saveEdit = async () => {
     if (!editData) return;
 
-    const res = await fetch(`${API}/${id}`, {
+    const res = await fetch(ENDPOINTS.CUSTOMER_BY_ID(id), {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
