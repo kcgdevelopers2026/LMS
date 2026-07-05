@@ -4,6 +4,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "KC CHINNADURAI GOLD JEWELLERY",
   description: "KC Chinnadurai Gold Jewellery App",
+
+  icons: {
+    icon: "/kc_logo.png", // ✅ correct way
+  },
 };
 
 export const viewport: Viewport = {
@@ -20,8 +24,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body >
-        <div >{children}</div>
+      <body>
+        <div>{children}</div>
       </body>
     </html>
   );
