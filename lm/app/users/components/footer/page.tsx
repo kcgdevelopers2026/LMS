@@ -2,6 +2,7 @@
 
 import styles from "./footer.module.css";
 import { usePathname, useRouter } from "next/navigation";
+import { FaCoins, FaCrow } from "react-icons/fa";
 
 import { FaHouse, FaGift, FaUser, FaClock } from "react-icons/fa6";
 
@@ -49,9 +50,21 @@ export default function Footer() {
       </button>
 
       <button
+        onClick={() => router.push("/users/pages/purchasehis")}
+        className={`${styles.item} ${
+          pathname === "/users/pages/purchasehis" ? styles.active : ""
+        }`}
+      >
+        <div className={styles.iconBox}>
+          <FaCoins className={styles.icon} />
+        </div>
+        <span>Contest</span>
+      </button>
+
+      <button
         onClick={() => router.push("/users/pages/profile")}
         className={`${styles.item} ${
-          pathname === "/users/pages/profile" ? styles.active : ""
+          pathname === "/users/pages/contestpage" ? styles.active : ""
         }`}
       >
         <div className={styles.iconBox}>
