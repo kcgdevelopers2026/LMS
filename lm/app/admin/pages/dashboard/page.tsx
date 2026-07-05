@@ -17,7 +17,7 @@ export default function Page() {
     try {
       setLoading(true);
 
-      const res = await fetch(`${API_BASE_URL}/dashboard`, {
+      const res = await fetch(`${API_BASE_URL}/api/dashboard`, {
   credentials: "include",
 });
 
