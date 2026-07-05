@@ -50,9 +50,9 @@ export default function Footer() {
       </button>
 
       <button
-        onClick={() => router.push("/users/pages/purchasehis")}
+        onClick={() => router.push("/users/pages/contestpage")}
         className={`${styles.item} ${
-          pathname === "/users/pages/purchasehis" ? styles.active : ""
+          pathname === "/users/pages/contestpage" ? styles.active : ""
         }`}
       >
         <div className={styles.iconBox}>
@@ -64,7 +64,7 @@ export default function Footer() {
       <button
         onClick={() => router.push("/users/pages/profile")}
         className={`${styles.item} ${
-          pathname === "/users/pages/contestpage" ? styles.active : ""
+          pathname === "/users/pages/profile" ? styles.active : ""
         }`}
       >
         <div className={styles.iconBox}>
