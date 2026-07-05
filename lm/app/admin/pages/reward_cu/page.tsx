@@ -259,11 +259,14 @@ export default function RewardCouponPage() {
           
 
             {/* COUPON DISPLAY */}
-            <input
-              value={shopCoupon ? `₹${shopCoupon}` : ""}
-              readOnly
-              className={styles.input}
-            />
+<div className={styles.formGroup}>
+  <label>Coupon Value</label>
+  <input
+    value={shopCoupon ? `₹${shopCoupon}` : ""}
+    readOnly
+    className={styles.input}
+  />
+</div>
 
             {/* REMAINING */}
             <div className={styles.formGroup}>
