@@ -28,7 +28,7 @@ const fetchRedeems = async () => {
     });
 
     if (res.status === 401) {
-      router.push("/users/pages/login");
+      router.push("/users/auth/");
       return;
     }
 
