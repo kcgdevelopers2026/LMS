@@ -2,7 +2,7 @@
 
 import styles from "./footer.module.css";
 import { usePathname, useRouter } from "next/navigation";
-import { FaCoins, FaCrow } from "react-icons/fa";
+import { FaCoins, FaCrow, FaCrown } from "react-icons/fa";
 
 import { FaHouse, FaGift, FaUser, FaClock } from "react-icons/fa6";
 
@@ -56,7 +56,7 @@ export default function Footer() {
         }`}
       >
         <div className={styles.iconBox}>
-          <FaCrow className={styles.icon} />
+          <FaCrown className={styles.icon} />
         </div>
         <span>Contest</span>
       </button>
