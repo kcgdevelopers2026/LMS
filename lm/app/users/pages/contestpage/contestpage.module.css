@@ -1,0 +1,372 @@
+.page {
+  min-height: 100vh;
+  padding: 45px;
+  font-family: system-ui;
+
+  background: radial-gradient(circle at top, #fffaf0, #ffffff, #fff7e6);
+}
+
+/* ================= HEADER ================= */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 52px;
+  font-weight: 1000;
+
+  background: linear-gradient(90deg, #d4af37, #ffcc66, #b8860b, #ffd700);
+  -webkit-background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 0 18px rgba(255, 215, 0, 0.25);
+}
+
+.header p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* ================= GRID ================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* ================= CARD ================= */
+.card {
+  position: relative;
+  padding: 22px;
+  border-radius: 26px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(212, 175, 55, 0.25);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.06),
+    0 0 25px rgba(212, 175, 55, 0.08);
+
+  transition: 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.12),
+    0 0 35px rgba(255, 215, 0, 0.25);
+}
+
+/* GOLD SHINE */
+.card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 215, 0, 0.18),
+    transparent
+  );
+  transform: rotate(25deg);
+  animation: shine 5s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-120%) rotate(25deg); }
+  100% { transform: translateX(120%) rotate(25deg); }
+}
+
+/* ================= BADGE ================= */
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  padding: 6px 12px;
+  border-radius: 30px;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #000;
+
+  box-shadow: 0 0 14px rgba(255, 215, 0, 0.45);
+}
+
+/* ================= TITLE ================= */
+.card h2 {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.card p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* ================= PRIZE ================= */
+.prize {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 10px 14px;
+  border-radius: 40px;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  color: #7a5a12;
+
+  background: linear-gradient(135deg, #fff2b2, #ffe08a);
+  border: 1px solid #d4af37;
+
+  box-shadow:
+    0 0 18px rgba(212,175,55,0.3),
+    inset 0 0 10px rgba(255,255,255,0.6);
+}
+
+/* ================= DATE ================= */
+.dateBox {
+  margin-top: 14px;
+  padding: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 14px;
+
+  background: rgba(255, 250, 235, 0.7);
+  border: 1px solid rgba(212,175,55,0.25);
+}
+
+.label {
+  font-size: 11px;
+  color: #888;
+}
+
+.date {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.line {
+  width: 1px;
+  height: 35px;
+  background: #e6d18a;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+
+  border: none;
+  border-radius: 14px;
+
+  font-weight: 900;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #ffd700, #ffb347);
+  color: #1a1a1a;
+
+  box-shadow: 0 10px 25px rgba(255,200,0,0.25);
+
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 35px rgba(255,200,0,0.4);
+}
+
+/* ================= MODAL ================= */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 420px;
+  padding: 22px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(212,175,55,0.3);
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+/* ================= FORM FIELDS (IMPORTANT PART) ================= */
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(212,175,55,0.35);
+
+  background: rgba(255,255,255,0.9);
+
+  outline: none;
+
+  transition: 0.25s;
+}
+
+.field input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 14px rgba(212,175,55,0.3);
+  transform: scale(1.02);
+}
+
+/* ================= ACTIONS ================= */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.actions button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.actions button:first-child {
+  background: #eee;
+}
+
+.winnerLogic {
+  margin-top: 14px;
+
+  padding: 12px 14px;
+
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #fffdf2, #fff4c2);
+
+  border: 1px solid rgba(212,175,55,0.35);
+
+  box-shadow:
+    0 0 15px rgba(212,175,55,0.12),
+    inset 0 0 8px rgba(255,255,255,0.7);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle gold shine */
+.winnerLogic::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 215, 0, 0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+  animation: logicShine 5s infinite;
+}
+
+@keyframes logicShine {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* heading */
+.winnerLogic {
+  font-weight: 900;
+  font-size: 12px;
+  color: #7a5a12;
+}
+
+/* description text */
+.logicText {
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5a4a1a;
+  line-height: 1.4;
+}
+
+.logicText b {
+  color: #1a1a1a;
+  font-weight: 900;
+}
+
+.actions button:last-child {
+  background: linear-gradient(135deg, #d4af37, #ffb347);
+  color: #000;
+  box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+}
+
+/* ================= SUCCESS ================= */
+.success {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 900;
+  color: green;
+}
+
+.winnerLogic {
+  margin-top: 14px;
+  padding: 12px 14px;
+
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #fffdf2, #fff4c2);
+  border: 1px solid rgba(212,175,55,0.35);
+
+  box-shadow:
+    0 0 15px rgba(212,175,55,0.12),
+    inset 0 0 8px rgba(255,255,255,0.7);
+
+  position: relative;
+  overflow: hidden;
+
+  font-weight: 900;
+  font-size: 12px;
+  color: #7a5a12;
+}

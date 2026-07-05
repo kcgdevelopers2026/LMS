@@ -1,0 +1,210 @@
+
+/* ================= PAGE ================= */
+
+.page {
+  display: flex;
+  height: 100vh;
+  background: #f6f8fc;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ================= LEFT ================= */
+
+.left {
+  width: 330px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.left h2 {
+  margin-bottom: 12px;
+}
+
+/* ================= INPUT ================= */
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* ================= CREATE ================= */
+
+.createBox {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+/* ================= ITEMS ================= */
+
+.item {
+  padding: 10px;
+  margin-top: 10px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background: #f3f4f6;
+}
+
+.item p {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ================= RIGHT ================= */
+
+.right {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* ================= TABS ================= */
+
+.tabs button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 6px;
+  background: #e5e7eb;
+  cursor: pointer;
+}
+
+.activeTab {
+  background: #2563eb !important;
+  color: white;
+}
+
+/* ================= EXPORT ================= */
+
+.exportBtn {
+  padding: 8px 14px;
+  background: #111827;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.exportBtn:hover {
+  background: #000;
+}
+
+/* ================= GRID ================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+/* ================= CARD ================= */
+
+.card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+/* ================= ROW ================= */
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+/* ================= META ================= */
+
+.meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* ================= WIN BUTTON ================= */
+
+.winBtn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  background: #22c55e;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.winBtn:hover {
+  background: #16a34a;
+}
+
+/* ================= WINNER ================= */
+
+.winnerCard {
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty {
+  text-align: center;
+  margin-top: 100px;
+  color: #9ca3af;
+}
+
+.exportAllBtn {
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: 0.2s;
+}
+
+.exportAllBtn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}

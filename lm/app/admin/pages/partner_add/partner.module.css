@@ -1,0 +1,261 @@
+.page {
+  min-height: 100vh;
+  background: #f5f6fb;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* BUTTON */
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #5b2de0;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.addBtn:hover {
+  background: #4b22c4;
+}
+
+/* TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: #fafafa;
+}
+
+.table th {
+  text-align: left;
+  padding: 15px;
+  color: #666;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.table td {
+  padding: 18px 15px;
+  border-bottom: 1px solid #ececec;
+  font-size: 14px;
+}
+
+.table tbody tr:hover {
+  background: #fafaff;
+}
+
+/* STATUS */
+.active {
+  display: inline-block;
+  background: #e9f8ee;
+  color: #16a34a;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.inactive {
+  display: inline-block;
+  background: #fdecec;
+  color: #dc2626;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ACTION ICONS */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.delete {
+  color: #ef4444;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 18px;
+  color: #888;
+  font-size: 13px;
+}
+
+/* ========================= */
+/* ADD PARTNER FORM STYLES   */
+/* ========================= */
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formGroup label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ================= SAVE BUTTON ================= */
+.saveBtn {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.saveBtn:hover {
+  background: #15803d;
+}
+
+/* ================= CANCEL BUTTON ================= */
+.cancelBtn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancelBtn:hover {
+  background: #b91c1c;
+}
+
+/* ================= EDIT ICON (optional improvement) ================= */
+.editIcon {
+  cursor: pointer;
+  color: #2563eb;
+  transition: 0.2s;
+}
+
+.editIcon:hover {
+  color: #1d4ed8;
+}
+
+/* ================= DELETE ICON (optional improvement) ================= */
+.deleteIcon {
+  cursor: pointer;
+  color: #dc2626;
+  transition: 0.2s;
+}
+
+.deleteIcon:hover {
+  color: #b91c1c;
+}
+
+.input:focus {
+  border-color: #5b2de0;
+  box-shadow: 0 0 0 3px rgba(91, 45, 224, 0.1);
+}
+
+/* FULL WIDTH INPUT (if needed later) */
+.full {
+  grid-column: span 2;
+}
+
+/* FORM BUTTON INSIDE FORM */
+.form .addBtn {
+  grid-column: span 2;
+  justify-content: center;
+}
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .page {
+    padding: 16px;
+  }
+
+  .card {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 750px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .addBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .form .addBtn {
+    grid-column: span 1;
+  }
+}

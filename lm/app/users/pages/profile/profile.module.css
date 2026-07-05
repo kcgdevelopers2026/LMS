@@ -1,0 +1,230 @@
+/* ================= BASE ================= */
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 18px;
+  padding-bottom: 90px;
+
+  font-family: "Poppins", system-ui, sans-serif;
+
+  background: linear-gradient(180deg, #fff8e6, #f3e2b8);
+}
+
+/* ================= SLOW CROSS LIGHT EFFECT ================= */
+
+@keyframes softGlowMove {
+  0% {
+    transform: translateX(-40%) translateY(-20%) rotate(15deg);
+    opacity: 0.25;
+  }
+
+  50% {
+    transform: translateX(20%) translateY(10%) rotate(15deg);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translateX(60%) translateY(30%) rotate(15deg);
+    opacity: 0.25;
+  }
+}
+
+/* ================= PROFILE CARD ================= */
+
+.profileCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 18px;
+  border-radius: 20px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(135deg, #b8862c, #f7d774, #c99a2e);
+
+  box-shadow: 0 10px 30px rgba(184, 134, 44, 0.35);
+}
+
+/* SOFT MOVING LIGHT LAYER (MAIN EFFECT) */
+.profileCard::before {
+  content: "";
+  position: absolute;
+
+  width: 180%;
+  height: 180%;
+
+  top: -60%;
+  left: -60%;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.35),
+    transparent 60%
+  );
+
+  filter: blur(18px);
+
+  animation: softGlowMove 6s ease-in-out infinite;
+
+  transform: rotate(15deg);
+}
+
+/* SECOND LIGHT SHEEN */
+.profileCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+
+  transform: skewX(-25deg);
+
+  animation: slowSweep 7s ease-in-out infinite;
+}
+
+/* VERY SLOW CROSS SWEEP */
+@keyframes slowSweep {
+  0% {
+    left: -120%;
+  }
+
+  50% {
+    left: 60%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
+
+/* ================= AVATAR ================= */
+
+.avatar {
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  color: #705e0f;
+
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+/* ================= TEXT ================= */
+
+.profileInfo {
+  z-index: 2;
+}
+
+.profileInfo h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+  color: #3a3d0a;
+}
+
+.profileInfo p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: rgba(137, 25, 25, 0.9);
+}
+
+/* ================= REST SAME UI ================= */
+
+.detailsCard {
+  margin-top: 14px;
+  padding: 14px;
+
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(184, 134, 44, 0.15);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.icon {
+  color: #b8862c;
+}
+
+.card,
+.infoBox {
+  margin-top: 12px;
+  padding: 14px;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+
+  border: 1px solid rgba(184, 134, 44, 0.15);
+
+  transition: 0.3s ease;
+}
+
+.card:hover,
+.infoBox:hover {
+  transform: translateY(-3px);
+}
+
+.logoutBtn {
+  margin-top: 18px;
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #b8862c, #f2d36b);
+  color: #fff;
+
+  font-weight: 900;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(184, 134, 44, 0.3);
+}

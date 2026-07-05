@@ -1,0 +1,28 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6fb;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* LEFT SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: #111827;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* RIGHT CONTENT */
+.main {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+}

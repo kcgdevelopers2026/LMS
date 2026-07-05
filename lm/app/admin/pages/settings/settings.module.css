@@ -1,0 +1,102 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background: #f4f6fb;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  width: 650px;
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.ruleBox {
+  background: #eef2ff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.ruleTitle {
+  font-size: 14px;
+  color: #666;
+}
+
+.ruleText {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2563eb;
+  margin-top: 5px;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.info {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.label {
+  font-size: 13px;
+  color: #555;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+}
+
+.note {
+  font-size: 13px;
+  color: #666;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.saveBtn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.resetBtn {
+  background: #e5e7eb;
+  color: #333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}

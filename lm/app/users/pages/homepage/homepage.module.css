@@ -1,0 +1,683 @@
+.container{
+  width:100%;
+  min-height:100vh;
+  padding:16px;
+  padding-bottom:100px;
+
+  font-family:system-ui;
+
+  /* PREMIUM WARM BACKGROUND */
+  background:linear-gradient(180deg,#f7f1e6,#efe2cc);
+}
+
+
+.memberCard{
+    position:relative;
+    width:100%;
+    max-width:720px;
+    margin:25px auto;
+}
+
+.memberCard {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+
+  /* soft luxury glow */
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.25),
+    0 0 25px rgba(212, 175, 55, 0.15);
+
+  transform: translateZ(0);
+}
+
+.memberCard::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: rotate(25deg);
+  animation: shineMove 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shineMove {
+  0% {
+    left: -60%;
+  }
+  50% {
+    left: 120%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+
+.premiumIn {
+  animation: premiumIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-style: preserve-3d;
+}
+
+.flipIn {
+  animation: flipIn 0.9s ease-out both;
+  transform-origin: center;
+}
+
+@keyframes flipIn {
+  0% {
+    transform: perspective(1000px) rotateY(90deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: perspective(1000px) rotateY(-10deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: perspective(1000px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.cardImage{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:22px;
+}
+
+/* Gold gradient text */
+.shopName,
+.shopSubTitle,
+.memberName,
+.cardNo,
+.joining h5,
+.points h2{
+    background:linear-gradient(
+        180deg,
+        #FFF1B8,
+        #E8C25D,
+        #D4AF37,
+        #A87410
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+
+/* Shop Name */
+.shopName{
+    position:absolute;
+    top:8%;
+    left:10%;
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+/* Subtitle */
+.shopSubTitle{
+    position:absolute;
+    top:15%;
+    left:10%;
+    font-size:13px;
+    letter-spacing:6px;
+}
+
+/* Member Name */
+.memberName{
+    position:absolute;
+    top:29%;
+    left:14%;
+    font-size:28px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+/* Card Number */
+.cardNo{
+    position:absolute;
+    top:44%;
+    left:8%;
+    font-size:24px;
+    font-family:"Space Mono",monospace;
+    letter-spacing:.10em;
+    font-weight:900;
+}
+
+/* Joining Date */
+.joining{
+    position:absolute;
+    bottom:5%;
+    left:5%;
+}
+
+.joining p{
+    color:#c6a145;
+    font-size:10px;
+    font-family:"Space Mono",monospace;
+    margin:0;
+    letter-spacing:1px;
+    font-weight: 600;
+}
+
+.joining h5{
+    margin-top:5px;
+    font-size:15px;
+    font-family:"Space Mono",monospace;
+    font-weight:600;
+}
+
+.points{
+    position: absolute;
+    right: 20px;      /* move to the right edge */
+    bottom: 10px;     /* move to the bottom edge */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+
+    z-index: 10;
+}
+
+.points p{
+    margin: 0;
+    font-family:"Space Mono",monospace;
+    color:#c6a145;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.points h2{
+    margin: 2px 0 0;
+    padding-right: 20px;
+    color: #F4C542;
+    font-size: 30px;
+    font-family:"Space Mono",monospace;
+    font-weight: 900;
+    line-height: 1;
+}
+/* ================= HEADER ================= */
+
+.cardImage{
+
+  border-radius: 15px;
+}
+
+
+.header{
+    position:relative;
+    overflow:hidden;
+
+    padding:22px 20px;
+    margin-bottom:22px;
+
+    border-radius:22px;
+
+    background:linear-gradient(
+        145deg,
+        #FFFDF7 0%,
+        #FBECC2 20%,
+        #F3D986 45%,
+        #E0BE5A 70%,
+        #C89B2D 100%
+    );
+
+    border:2px solid rgba(255,248,210,.9);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.18),
+        inset 0 2px 3px rgba(255,255,255,.95),
+        inset 0 -3px 8px rgba(122,86,15,.25),
+        0 0 0 1px rgba(212,175,55,.25);
+}
+
+/* Top glossy reflection */
+.header::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:42%;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(255,255,255,.75),
+        rgba(255,255,255,.15),
+        transparent
+    );
+}
+
+/* Moving metallic shine */
+.header::after{
+    content:"";
+    position:absolute;
+    top:-60%;
+    left:-35%;
+
+    width:35%;
+    height:220%;
+
+    transform:rotate(25deg);
+
+    background:linear-gradient(
+        to right,
+        rgba(255,255,255,0),
+        rgba(255,255,255,.65),
+        rgba(255,255,255,0)
+    );
+
+    animation:goldShine 5s linear infinite;
+}
+
+@keyframes goldShine{
+
+    0%{
+        left:-40%;
+    }
+
+    100%{
+        left:130%;
+    }
+
+}
+
+.header h1{
+    margin:0;
+    text-align:center;
+
+    font-size:30px;
+    font-weight:800;
+
+    color:#322300;
+
+    text-shadow:
+        0 1px 0 rgba(255,255,255,.8),
+        0 2px 4px rgba(0,0,0,.15);
+}
+
+.header h1 span{
+
+    background:linear-gradient(
+        #FFF7CC,
+        #F8DE78,
+        #D4AF37,
+        #9B6B05
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    font-weight:900;
+}
+
+.header p{
+    margin-top:8px;
+
+    text-align:center;
+
+    color:#6D5208;
+
+    font-size:14px;
+    font-weight:600;
+
+    letter-spacing:.8px;
+}
+
+
+
+/* ================= POINT CARD ================= */
+
+.pointsCard{
+  background:linear-gradient(135deg,#1a1a1a,#2b2418);
+  border:1px solid rgba(184,134,44,0.25);
+
+  border-radius:22px;
+  padding:20px;
+
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+
+  color:#fff;
+
+  box-shadow:0 18px 40px rgba(0,0,0,0.2);
+}
+
+.available{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  color:#d4af37;
+  font-size:16px;
+}
+
+.pointsCard h2{
+  font-size:44px;
+  color:#d4af37;
+  font-weight: bold;
+  margin-top:6px;
+}
+
+.logoCircle{
+  width:68px;
+  height:68px;
+
+  border-radius:18px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:32px;
+
+  background:rgba(212,175,55,0.08);
+
+  border:1px solid rgba(212,175,55,0.2);
+}
+
+/* ================= STATS ================= */
+
+.statsGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+
+  margin-top:18px;
+  margin-bottom:22px;
+}
+
+/* PREMIUM CARD STYLE */
+
+.statCard{
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(10px);
+
+  border-radius:18px;
+  padding:14px;
+
+  text-align:center;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+
+  transition:0.3s;
+}
+
+.statCard:hover{
+  transform:translateY(-3px);
+}
+
+.icon{
+  width:42px;
+  height:42px;
+
+  border-radius:14px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  margin:auto;
+  margin-bottom:10px;
+
+  font-size:18px;
+}
+
+.imageIcon{
+    position:relative;
+    width:110px;
+    min-width:110px;
+
+    overflow:hidden;
+
+    border-radius:20px 0 0 20px;
+
+    background:#f5f5f5;
+
+    flex-shrink:0;
+}
+
+.itemImage{
+    object-fit:cover;
+}
+
+.category{
+  display:inline-block;
+
+  margin-top:4px;
+  margin-bottom:2px;
+
+  font-size:11px;
+  font-weight:700;
+
+  color:#201804;
+
+  background:#f8edd0;
+
+  padding:2px 8px;
+
+  border-radius:20px;
+
+  width:fit-content;
+}
+
+/* soft premium colors */
+
+.green{
+  background:rgba(46,160,87,0.12);
+  color:#2e9f57;
+}
+
+.red{
+  background:rgba(216,68,68,0.12);
+  color:#d84444;
+}
+
+.gold{
+  background:rgba(184,134,44,0.12);
+  color:#b8862c;
+}
+
+.statCard h4{
+  font-size:12px;
+  color:#6f6252;
+  margin:0;
+}
+
+.statCard h3{
+  font-size:20px;
+  margin-top:8px;
+}
+
+/* ================= SECTION HEADER ================= */
+
+.sectionHeader{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin:18px 0 12px;
+}
+
+.sectionHeader h3{
+  font-size:16px;
+  color:#1c1c1c;
+}
+
+.sectionHeader button{
+  border:none;
+  background:none;
+
+  color:#b8862c;
+  font-weight:600;
+  font-size:12px;
+
+  cursor:pointer;
+}
+
+/* ================= LIST CARD ================= */
+
+.listCard{
+  background:rgba(255,255,255,.6);
+  backdrop-filter:blur(14px);
+
+  border:1px solid rgba(212,175,55,.15);
+
+  border-radius:20px;
+
+  margin-bottom:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.6);
+
+  transition:.3s;
+}
+
+.listCard:hover{
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 18px 35px rgba(0,0,0,.12),
+    0 0 20px rgba(212,175,55,.15);
+}
+
+.item{
+  display:flex;
+  align-items:stretch;
+
+  min-height:100px;
+
+  overflow:hidden;
+}
+
+/* IMAGE */
+
+.imageIcon{
+    position:relative;
+
+    width:110px;
+    min-width:110px;
+
+    align-self:stretch;   /* ✅ fills parent's height */
+
+    overflow:hidden;
+
+    border-radius:20px 0 0 20px;
+    background:#f5f5f5;
+}
+
+.itemImage{
+  object-fit:cover;
+}
+
+/* INFO */
+
+.info{
+  flex:1;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  padding:14px 16px;
+}
+
+.info h4{
+  margin:0;
+  font-size:15px;
+  font-weight:700;
+  color:#1c1c1c;
+}
+
+.info p{
+  margin-top:4px;
+  font-size:12px;
+  color:#7a6a55;
+}
+
+.billNo{
+  font-size:11px;
+  color:#a08a6b;
+  font-family:"Space Mono",monospace;
+}
+
+/* POINTS */
+
+.item .points{
+  position:static;
+
+  width:85px;
+  min-width:85px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-end;
+
+  padding-right:16px;
+
+  text-align:right;
+}
+
+.item .points h4{
+  margin:0;
+  font-size:20px;
+  font-weight:800;
+}
+
+.item .points span{
+  margin-top:2px;
+  font-size:10px;
+  color:#9a8a72;
+  letter-spacing:1px;
+}
+
+/* COLORS */
+
+.greenText{
+  color:#2e9f57;
+  font-weight:900;
+}
+
+.redText{
+  color:#d84444;
+  font-weight:900;
+}
+
+.goldText{
+  color:#b8862c;
+  font-weight:900;
+}
+/* MOBILE */
+
+@media(max-width:480px){
+
+.statsGrid{
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.pointsCard h2{
+  font-size:38px;
+}
+
+}
