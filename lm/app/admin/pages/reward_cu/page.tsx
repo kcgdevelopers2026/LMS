@@ -256,7 +256,7 @@ export default function RewardCouponPage() {
 
 
             
-            <label>Coupons</label>
+          
 
             {/* COUPON DISPLAY */}
             <input
