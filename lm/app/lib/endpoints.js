@@ -23,6 +23,7 @@ export const ENDPOINTS = {
 
   // ================= SHOPS =================
   SHOPS: `${API_BASE_URL}/api/shops`,
+  SHOP_BY_ID: (id) => `${API_BASE_URL}/api/shops/${id}`,
 
   // ================= PURCHASES =================
   PURCHASES: `${API_BASE_URL}/api/purchases`,
