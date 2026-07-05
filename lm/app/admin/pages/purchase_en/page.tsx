@@ -167,14 +167,14 @@ export default function PurchaseEntryPage() {
 
   alert("Saved successfully!");
 
-  const message = `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
+const message = `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
 
 Dear ${selectedCustomer?.name},
 
 Your purchase has been successfully recorded. 🎉
 
 🧾 Bill No: ${form.bill_number}
-💰 Amount: ₹${form.amount}
+💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
 ⭐ Loyalty Points Added: ${form.reward_points}
 💳 Card No: ${selectedCustomer?.card_no}
 
