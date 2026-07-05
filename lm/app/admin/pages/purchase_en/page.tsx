@@ -176,25 +176,32 @@ const formattedTime = now.toLocaleTimeString("en-IN", {
 });
 
 const message =
-  `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨\n\n` +
-  `📅 Date: ${formattedDate}\n` +
-  `⏰ Time: ${formattedTime}\n\n` +
-  `👤 Customer: ${selectedCustomer?.name}\n` +
-  `🧾 Bill No: ${form.bill_number}\n` +
-  `💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}\n` +
-  `⭐ Loyalty Points: ${form.reward_points}\n` +
-  `💳 Card No: ${selectedCustomer?.card_no}\n\n` +
-  `🙏 Thank you for shopping with us 💛`;
+`✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
 
+📅 Date: ${formattedDate}
+⏰ Time: ${formattedTime}
+
+👤 Customer: ${selectedCustomer?.name}
+🧾 Bill No: ${form.bill_number}
+💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
+⭐ Loyalty Points: ${form.reward_points}
+💳 Card No: ${selectedCustomer?.card_no}
+
+🙏 Thank you for shopping with us 💛`;
+
+// IMPORTANT: do NOT use base64 or decode tricks
 const phone = `91${mobile}`;
 
+// detect device
 const isMobile = /Android|iPhone/i.test(navigator.userAgent);
 
+// DIRECT OPEN WHATSAPP (NO ASK, NO PERMISSION POPUPS)
 const url = isMobile
   ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
   : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 
-window.open(url, "_blank");
+// force direct open
+window.location.href = url;
 
 
   setMobile("");
