@@ -175,33 +175,26 @@ const formattedTime = now.toLocaleTimeString("en-IN", {
   minute: "2-digit",
 });
 
-const message =
-`✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
+const message = [
+  "✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨",
+  "",
+  `📅 Date: ${formattedDate}`,
+  `⏰ Time: ${formattedTime}`,
+  "",
+  `👤 Customer: ${selectedCustomer?.name}`,
+  `🧾 Bill No: ${form.bill_number}`,
+  `💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}`,
+  `⭐ Loyalty Points: ${form.reward_points}`,
+  `💳 Card No: ${selectedCustomer?.card_no}`,
+  "",
+  "🙏 Thank you for shopping with us 💛"
+].join("\n");
 
-📅 Date: ${formattedDate}
-⏰ Time: ${formattedTime}
-
-👤 Customer: ${selectedCustomer?.name}
-🧾 Bill No: ${form.bill_number}
-💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
-⭐ Loyalty Points: ${form.reward_points}
-💳 Card No: ${selectedCustomer?.card_no}
-
-🙏 Thank you for shopping with us 💛`;
-
-// IMPORTANT: do NOT use base64 or decode tricks
 const phone = `91${mobile}`;
 
-// detect device
-const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+const url = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 
-// DIRECT OPEN WHATSAPP (NO ASK, NO PERMISSION POPUPS)
-const url = isMobile
-  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-  : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
-
-// force direct open
-window.location.href = url;
+window.open(url, "_blank");
 
 
   setMobile("");
