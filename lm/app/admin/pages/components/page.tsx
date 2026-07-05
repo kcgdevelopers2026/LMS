@@ -17,6 +17,8 @@ import {
 import { MdStore } from "react-icons/md";
 
 export default function Sidebar() {
+
+  
   const pathname = usePathname();
 
   const menu = [
@@ -60,7 +62,7 @@ export default function Sidebar() {
           </Link>
         ))}
 
-        <Link href="/logout" className={styles.link}>
+        <Link href="/admin/auth/" className={styles.link}>
           <span className={styles.icon}><FiLogOut /></span>
           <span>Logout</span>
         </Link>
