@@ -3,7 +3,7 @@
 import { useState } from "react";
 import styles from "./auth.module.css";
 import { FaGem, FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { API_BASE_URL } from "../../lib/api.js";
+import { ENDPOINTS } from "../../lib/endpoints.js";
 
 
 export default function AdminLogin() {
@@ -22,7 +22,7 @@ export default function AdminLogin() {
     try {
       setLoading(true);
 
-      const res = await fetch(`${API_BASE_URL}/api/admin/login`, {
+     const res = await fetch(ENDPOINTS.LOGIN, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

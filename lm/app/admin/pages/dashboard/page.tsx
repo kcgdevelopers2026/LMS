@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./dashboard.module.css";
 
-import { API_BASE_URL } from "../../../lib/api.js";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 export default function Page() {
   const [data, setData] = useState<any>(null);
@@ -13,29 +13,29 @@ export default function Page() {
     load();
   }, []);
 
-  const load = async () => {
-    try {
-      setLoading(true);
+const load = async () => {
+  try {
+    setLoading(true);
 
-      const res = await fetch(`${API_BASE_URL}/api/dashboard`, {
-  credentials: "include",
-});
+    const res = await fetch(ENDPOINTS.DASHBOARD, {
+      credentials: "include",
+    });
 
-      if (!res.ok) {
-        throw new Error("API Error: " + res.status);
-      }
-
-      const json = await res.json();
-
-      console.log("DASHBOARD DATA:", json);
-
-      setData(json.data);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
+    if (!res.ok) {
+      throw new Error("API Error: " + res.status);
     }
-  };
+
+    const json = await res.json();
+
+    console.log("DASHBOARD DATA:", json);
+
+    setData(json.data);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (loading) return <div>Loading...</div>;
   if (!data) return <div>No Data Found</div>;

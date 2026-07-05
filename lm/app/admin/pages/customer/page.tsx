@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "./customer.module.css";
 import { Eye, Trash2, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 type Customer = {
   id: string;           // UUID (DB only)
@@ -15,7 +16,6 @@ type Customer = {
   address: string;
 };
 
-const API_URL = "https://lms-7y23.onrender.com/api/customers";
 
 export default function CustomerPage() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function CustomerPage() {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await fetch(API_URL, { credentials: "include" });
+        const res = await fetch(ENDPOINTS.CUSTOMERS, { credentials: "include" })
 
         if (!res.ok) throw new Error("Fetch failed");
 
@@ -71,12 +71,12 @@ const addCustomer = async () => {
   }
 
   try {
-    const res = await fetch(API_URL, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    const res = await fetch(ENDPOINTS.CUSTOMERS, {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(form),
+});
 
     const data = await res.json();
 
@@ -123,10 +123,11 @@ const addCustomer = async () => {
   if (!confirmDelete) return; // ❌ cancel if No
 
   try {
-    const res = await fetch(`${API_URL}/${id}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
+    const res = await fetch(ENDPOINTS.CUSTOMER_BY_ID(id), {
+  method: "DELETE",
+  credentials: "include",
+});
+
 
     const data = await res.json();
 
