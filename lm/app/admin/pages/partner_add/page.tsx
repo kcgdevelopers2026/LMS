@@ -13,7 +13,7 @@ type Shop = {
   status: "Active" | "Inactive";
 };
 
-const API = "http://localhost:5001/api/shops";
+const API = "https://lms-7y23.onrender.com/api/shops";
 
 
 export default function PartnerShopsPage() {
@@ -73,7 +73,7 @@ const [password, setPassword] = useState("");
 
   const handleUnlock = async () => {
   try {
-    const res = await fetch("http://localhost:5001/api/admin/unlock", {
+    const res = await fetch("https://lms-7y23.onrender.com/api/admin/unlock", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

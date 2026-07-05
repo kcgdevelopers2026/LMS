@@ -22,7 +22,7 @@ export default function Dashboard() {
       if (tier) params.append("category", tier);
 
       const res = await fetch(
-        `http://localhost:5001/api/admin/reports?${params.toString()}`,
+        `https://lms-7y23.onrender.com/admin/reports?${params.toString()}`,
         { credentials: "include" }
       );
 

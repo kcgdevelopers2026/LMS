@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./purchase.module.css";
 
-const API_CUSTOMERS = "http://localhost:5001/api/customers";
-const API_SETTINGS = "http://localhost:5001/api/settings";
-const API_PURCHASE = "http://localhost:5001/api/purchases";
+const API_CUSTOMERS = "https://lms-7y23.onrender.com/api/customers";
+const API_SETTINGS = "https://lms-7y23.onrender.com/api/settings";
+const API_PURCHASE = "https://lms-7y23.onrender.com/api/purchases";
 
 type Customer = {
   id: string;

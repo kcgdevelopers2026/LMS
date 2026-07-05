@@ -5,9 +5,9 @@ import styles from "./customerde.module.css";
 import { Phone, CalendarDays, Mail, Pencil, X, Check } from "lucide-react";
 import { useParams } from "next/navigation";
 
-const API = "http://localhost:5001/api/customers";
-const PURCHASE_API = "http://localhost:5001/api/purchases/customer";
-const REDEEM_API = "http://localhost:5001/api/redeems/customer";
+const API = "https://lms-7y23.onrender.com/api/customers";
+const PURCHASE_API = "https://lms-7y23.onrender.com/api/purchases/customer";
+const REDEEM_API = "https://lms-7y23.onrender.com/api/redeems/customer";
 
 /* ================= TYPES ================= */
 type Customer = {

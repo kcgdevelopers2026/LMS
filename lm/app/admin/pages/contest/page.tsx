@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./contest.module.css";
 
-const API = "http://localhost:5001";
+import { API_BASE_URL } from "../../../lib/api.js"
 
 /* ================= TYPES ================= */
 
@@ -58,7 +58,7 @@ const [password, setPassword] = useState("");
 
   const handleUnlock = async () => {
   try {
-    const res = await fetch(`${API}/api/admin/unlock`, {
+    const res = await fetch(`${API_BASE_URL}/api/admin/unlock`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const [password, setPassword] = useState("");
 };
 
   const loadContests = async () => {
-    const res = await fetch(`${API}/api/admin/contests`, {
+    const res = await fetch(`${API_BASE_URL}/api/admin/contests`, {
       credentials: "include",
     });
 
@@ -100,7 +100,7 @@ const [password, setPassword] = useState("");
 
   for (const contest of contests) {
     const res = await fetch(
-      `${API}/api/admin/contests/entries/${contest.id}`,
+      `${API_BASE_URL}/api/admin/contests/entries/${contest.id}`,
       { credentials: "include" }
     );
 
@@ -148,10 +148,10 @@ const [password, setPassword] = useState("");
     setTab("participants");
 
     const [eRes, wRes] = await Promise.all([
-      fetch(`${API}/api/admin/contests/entries/${id}`, {
+      fetch(`${API_BASE_URL}/api/admin/contests/entries/${id}`, {
         credentials: "include",
       }),
-      fetch(`${API}/api/admin/contests/winners/${id}`, {
+      fetch(`${API_BASE_URL}/api/admin/contests/winners/${id}`, {
         credentials: "include",
       }),
     ]);
@@ -167,7 +167,7 @@ const [password, setPassword] = useState("");
   /* ================= CREATE ================= */
 
   const createContest = async () => {
-    const res = await fetch(`${API}/api/admin/contests`, {
+    const res = await fetch(`${API_BASE_URL}/api/admin/contests`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -196,7 +196,7 @@ const [password, setPassword] = useState("");
   /* ================= SAVE WINNER ================= */
 
   const saveWinner = async (entry: Entry) => {
-    const res = await fetch(`${API}/api/admin/contests/winner`, {
+    const res = await fetch(`${API_BASE_URL}/api/admin/contests/winner`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

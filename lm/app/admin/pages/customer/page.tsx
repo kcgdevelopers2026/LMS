@@ -15,7 +15,7 @@ type Customer = {
   address: string;
 };
 
-const API_URL = "http://localhost:5001/api/customers";
+const API_URL = "https://lms-7y23.onrender.com/api/customers";
 
 export default function CustomerPage() {
   const router = useRouter();

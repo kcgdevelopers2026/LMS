@@ -3,8 +3,8 @@
 import { useState } from "react";
 import styles from "./auth.module.css";
 import { FaGem, FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
+import { API_BASE_URL } from "../../lib/api.js";
 
-const API_BASE_URL = "http://localhost:5001/api";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");

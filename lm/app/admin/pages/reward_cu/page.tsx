@@ -48,7 +48,7 @@ export default function RewardCouponPage() {
   useEffect(() => {
     const loadShops = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/shops", {
+        const res = await fetch("https://lms-7y23.onrender.com/api/shops", {
           credentials: "include",
         });
 
@@ -72,7 +72,7 @@ export default function RewardCouponPage() {
       setLoadingCustomer(true);
 
       const res = await fetch(
-        `http://localhost:5001/api/customers/points-by-mobile?mobile=${mobile}`,
+        `https://lms-7y23.onrender.com/api/customers/points-by-mobile?mobile=${mobile}`,
         { credentials: "include" }
       );
 
@@ -150,7 +150,7 @@ export default function RewardCouponPage() {
     try {
       setSubmitting(true);
 
-      const res = await fetch("http://localhost:5001/api/redeems", {
+      const res = await fetch("https://lms-7y23.onrender.com/api/redeems", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

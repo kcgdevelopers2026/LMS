@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./dashboard.module.css";
 
-const API = "http://localhost:5001/dashboard";
+import { API_BASE_URL } from "../../../lib/api.js";
 
 export default function Page() {
   const [data, setData] = useState<any>(null);
@@ -17,9 +17,9 @@ export default function Page() {
     try {
       setLoading(true);
 
-      const res = await fetch(API, {
-        credentials: "include",
-      });
+      const res = await fetch(`${API_BASE_URL}/dashboard`, {
+  credentials: "include",
+});
 
       if (!res.ok) {
         throw new Error("API Error: " + res.status);
