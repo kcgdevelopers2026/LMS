@@ -47,11 +47,11 @@ export const customerLogin = async (req, res) => {
     );
 
     res.cookie("customerToken", token, {
-      httpOnly: true,
-      secure: false, // change to true in production (HTTPS)
-      sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+  httpOnly: true,
+  secure: true,        // MUST be true on Render (HTTPS)
+  sameSite: "none",    // REQUIRED for Vercel ↔ Render
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+});
 
     return res.json({
       success: true,
