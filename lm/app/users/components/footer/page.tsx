@@ -56,7 +56,7 @@ export default function Footer() {
         }`}
       >
         <div className={styles.iconBox}>
-          <FaCoins className={styles.icon} />
+          <FaCrow className={styles.icon} />
         </div>
         <span>Contest</span>
       </button>
