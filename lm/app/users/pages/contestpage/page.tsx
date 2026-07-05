@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./contestpage.module.css";
 
-const API = "http://localhost:5001";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 type Contest = {
   id: string;
@@ -25,7 +25,7 @@ export default function ContestPage() {
 
   /* ================= FETCH CONTESTS ================= */
   useEffect(() => {
-    fetch(`${API}/api/user/contests/active`)
+    fetch(ENDPOINTS.USER_CONTESTS_ACTIVE)
       .then((res) => res.json())
       .then((data) => {
         setContests(data.data || []);
@@ -56,7 +56,7 @@ export default function ContestPage() {
       setSubmitting(true);
       setMessage("");
 
-      const res = await fetch(`${API}/api/user/contests/join`, {
+      const res = await fetch(ENDPOINTS.USER_CONTEST_JOIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

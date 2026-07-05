@@ -16,6 +16,9 @@ type Purchase = {
   reward_points: number;
 };
 
+import { ENDPOINTS } from "../../../lib/endpoints.js";
+
+
 export default function HistoryPage() {
   const router = useRouter();
 
@@ -31,14 +34,13 @@ export default function HistoryPage() {
   }, []);
 
 
-  const API_URL = "http://localhost:5001";
 
   const fetchData = async () => {
     try {
-      const res = await fetch(
-  `${API_URL}/api/customer/purchases`,
-  { credentials: "include" }
-);
+     const res = await fetch(ENDPOINTS.CUSTOMER_PURCHASES, {
+  credentials: "include",
+});
+
 
       const result = await res.json();
 

@@ -45,4 +45,21 @@ export const ENDPOINTS = {
   CONTEST_WINNERS: (id) =>
     `${API_BASE_URL}/api/admin/contests/winners/${id}`,
   CONTEST_CREATE_WINNER: `${API_BASE_URL}/api/admin/contests/winner`,
+
+  CUSTOMER_LOGIN: `${API_BASE_URL}/api/customer/login`,
+
+  USER_CONTESTS_ACTIVE: `${API_BASE_URL}/api/user/contests/active`,
+USER_CONTEST_JOIN: `${API_BASE_URL}/api/user/contests/join`,
+CUSTOMER_HOME: `${API_BASE_URL}/api/customer/home`,
+CUSTOMER_PROFILE: `${API_BASE_URL}/api/customer/profile`,
+CUSTOMER_LOGOUT: `${API_BASE_URL}/api/customer/logout`,
+CUSTOMER_PURCHASES: `${API_BASE_URL}/api/customer/purchases`,
+
+USER_REDEEMS: `${API_BASE_URL}/api/user/redeems`,
+
+CUSTOMER_REWARDS: `${API_BASE_URL}/api/customer/rewards`,
+CUSTOMER_HOME: `${API_BASE_URL}/api/customer/home`,
+
+
+
 };

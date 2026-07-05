@@ -12,6 +12,7 @@ import {
 import { useRouter } from "next/navigation";
 
 import card from "../../../../public/credit_card.jpeg";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -22,17 +23,16 @@ export default function Dashboard() {
   const [currentPoints, setCurrentPoints] = useState(0);
   const [recentPurchases, setRecentPurchases] = useState<any[]>([]);
   const [recentRedeems, setRecentRedeems] = useState<any[]>([]);
-
+  
   useEffect(() => {
     fetchHome();
   }, []);
 
-const API_URL = "http://localhost:5001";
+
 
   const fetchHome = async () => {
     try {
-      const res = await fetch(
-        `${API_URL}/api/customer/home`,
+      const res = await fetch(ENDPOINTS.CUSTOMER_HOME,
         {
           credentials: "include",
         }

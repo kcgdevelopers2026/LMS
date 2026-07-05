@@ -5,6 +5,7 @@ import styles from "./auth.module.css";
 import { FaPhoneAlt, FaArrowRight } from "react-icons/fa";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { ENDPOINTS } from "../../lib/endpoints.js";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -24,19 +25,16 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      const res = await fetch(
-        "http://localhost:5001/api/customer/login",
-        {
-          method: "POST",
-          credentials: "include", // Store cookie automatically
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            mobile,
-          }),
-        }
-      );
+      const res = await fetch(ENDPOINTS.CUSTOMER_LOGIN, {
+  method: "POST",
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    mobile,
+  }),
+});
 
       const result = await res.json();
 

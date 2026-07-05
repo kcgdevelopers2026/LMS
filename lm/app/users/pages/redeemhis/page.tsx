@@ -9,8 +9,7 @@ import { useRouter } from "next/navigation";
 /* =========================
    API VARIABLE (SAME FILE)
 ========================= */
-const API = "http://localhost:5001";
-const REDEEM_API = `${API}/api/user/redeems`;
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 export default function HistoryPage() {
   const router = useRouter();
@@ -22,31 +21,32 @@ export default function HistoryPage() {
     fetchRedeems();
   }, []);
 
-  const fetchRedeems = async () => {
-    try {
-      const res = await fetch(REDEEM_API, {
-        credentials: "include",
-      });
+const fetchRedeems = async () => {
+  try {
+    const res = await fetch(ENDPOINTS.USER_REDEEMS, {
+      credentials: "include",
+    });
 
-      if (res.status === 401) {
-        router.push("/users/pages/login");
-        return;
-      }
-
-      const result = await res.json();
-
-      if (!result.success) {
-        alert(result.message || "Something went wrong");
-        return;
-      }
-
-      setRedeems(result.data || []);
-    } catch (err) {
-      console.log("FETCH ERROR:", err);
-    } finally {
-      setLoading(false);
+    if (res.status === 401) {
+      router.push("/users/pages/login");
+      return;
     }
-  };
+
+    const result = await res.json();
+
+    if (!result.success) {
+      alert(result.message || "Something went wrong");
+      return;
+    }
+
+    setRedeems(result.data || []);
+  } catch (err) {
+    console.log("FETCH ERROR:", err);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   if (loading) {
     return (

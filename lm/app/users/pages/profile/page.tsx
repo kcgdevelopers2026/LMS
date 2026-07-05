@@ -17,7 +17,7 @@ import {
 
 import Link from "next/link";
 
-const API = "http://localhost:5001";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -29,7 +29,7 @@ export default function ProfilePage() {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch(`${API}/api/customer/profile`, {
+      const res = await fetch(ENDPOINTS.CUSTOMER_PROFILE, {
         credentials: "include",
       });
 
@@ -48,7 +48,7 @@ export default function ProfilePage() {
   ========================= */
   const handleLogout = async () => {
     try {
-      await fetch(`${API}/api/customer/logout`, {
+      await fetch(ENDPOINTS.CUSTOMER_PROFILE, {
         method: "POST",
         credentials: "include",
       });

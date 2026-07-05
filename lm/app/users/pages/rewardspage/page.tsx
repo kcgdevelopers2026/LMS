@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import styles from "./rewardspage.module.css";
 import { FaGem } from "react-icons/fa6";
 
-const API_URL = "http://localhost:5001";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
+
+
 
 type Shop = {
   id: string;
@@ -23,38 +25,37 @@ export default function RewardsPage() {
     fetchRewards();
     fetchPoints();
   }, []);
+const fetchRewards = async () => {
+  try {
+    const res = await fetch(ENDPOINTS.CUSTOMER_REWARDS, {
+      credentials: "include",
+    });
 
-  const fetchRewards = async () => {
-    try {
-      const res = await fetch(`${API_URL}/api/customer/rewards`, {
-        credentials: "include",
-      });
+    const result = await res.json();
 
-      const result = await res.json();
-
-      if (result.success) {
-        setShops(result.data);
-      }
-    } catch (err) {
-      console.log(err);
+    if (result.success) {
+      setShops(result.data);
     }
-  };
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-  const fetchPoints = async () => {
-    try {
-      const res = await fetch(`${API_URL}/api/customer/home`, {
-        credentials: "include",
-      });
+const fetchPoints = async () => {
+  try {
+    const res = await fetch(ENDPOINTS.CUSTOMER_HOME, {
+      credentials: "include",
+    });
 
-      const result = await res.json();
+    const result = await res.json();
 
-      if (result.success) {
-        setPoints(result.data.current_points);
-      }
-    } catch (err) {
-      console.log(err);
+    if (result.success) {
+      setPoints(result.data.current_points);
     }
-  };
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   return (
     <main className={styles.container}>
