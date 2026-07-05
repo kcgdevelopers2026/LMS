@@ -255,11 +255,8 @@ export default function RewardCouponPage() {
             </div>
 
 
-            {/* REMAINING */}
-            <div className={styles.formGroup}>
-              <label>Coupons to apply</label>
-              <input value={remainingPoints} readOnly className={styles.input} />
-            </div>
+            
+            <label>Coupons</label>
 
             {/* COUPON DISPLAY */}
             <input
