@@ -167,11 +167,22 @@ export default function PurchaseEntryPage() {
 
   alert("Saved successfully!");
 
+const now = new Date();
+
+const formattedDate = now.toLocaleDateString("en-IN"); // 05/07/2026
+const formattedTime = now.toLocaleTimeString("en-IN", {
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
 const message = `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
+
+📅 Date: ${formattedDate}
+⏰ Time: ${formattedTime}
 
 Dear ${selectedCustomer?.name},
 
-Your purchase has been successfully recorded. 🎉
+Your purchase has been successfully recorded 🎉
 
 🧾 Bill No: ${form.bill_number}
 💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
@@ -182,10 +193,14 @@ Thank you for shopping with us 💛`;
 
 const phone = `91${mobile}`;
 
-window.open(
-  `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-  "_blank"
-);
+// detect device
+const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+
+const url = isMobile
+  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+  : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+
+window.open(url, "_blank");
 
 
   setMobile("");
