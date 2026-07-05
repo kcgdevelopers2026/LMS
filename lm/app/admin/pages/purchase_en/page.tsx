@@ -175,28 +175,24 @@ const formattedTime = now.toLocaleTimeString("en-IN", {
   minute: "2-digit",
 });
 
-const message = `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
-
-📅 Date: ${formattedDate}
-⏰ Time: ${formattedTime}
-
-Dear ${selectedCustomer?.name},
-
-Your purchase has been successfully recorded 🎉
-
-🧾 Bill No: ${form.bill_number}
-💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
-⭐ Loyalty Points Added: ${form.reward_points}
-💳 Card No: ${selectedCustomer?.card_no}
-
-Thank you 💛`;
-
-// convert safely to base64 (fix emoji corruption)
-const encodedMessage = btoa(unescape(encodeURIComponent(message)));
+const message =
+  `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨\n\n` +
+  `📅 Date: ${formattedDate}\n` +
+  `⏰ Time: ${formattedTime}\n\n` +
+  `👤 Customer: ${selectedCustomer?.name}\n` +
+  `🧾 Bill No: ${form.bill_number}\n` +
+  `💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}\n` +
+  `⭐ Loyalty Points: ${form.reward_points}\n` +
+  `💳 Card No: ${selectedCustomer?.card_no}\n\n` +
+  `🙏 Thank you for shopping with us 💛`;
 
 const phone = `91${mobile}`;
 
-const url = `https://web.whatsapp.com/send?phone=${phone}&text=${decodeURIComponent(escape(atob(encodedMessage)))}`;
+const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+
+const url = isMobile
+  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+  : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
 
 window.open(url, "_blank");
 
