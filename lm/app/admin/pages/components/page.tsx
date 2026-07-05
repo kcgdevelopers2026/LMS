@@ -14,12 +14,31 @@ import {
   FiLogOut,
 } from "react-icons/fi";
 
+import { useRouter } from "next/navigation";
+import { API_BASE_URL } from "../../../lib/api.js";
+
 import { MdStore } from "react-icons/md";
 
 export default function Sidebar() {
 
   
   const pathname = usePathname();
+
+  const router = useRouter();
+
+const handleLogout = async () => {
+  try {
+    await fetch(`${API_BASE_URL}/api/admin/logout`, {
+      method: "POST",
+      credentials: "include",
+    });
+
+    router.push("/admin/auth");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
   const menu = [
     { name: "Dashboard", icon: <FiHome />, path: "/admin/pages/dashboard" },
@@ -62,10 +81,10 @@ export default function Sidebar() {
           </Link>
         ))}
 
-        <Link href="/admin/auth/" className={styles.link}>
-          <span className={styles.icon}><FiLogOut /></span>
-          <span>Logout</span>
-        </Link>
+        <div onClick={handleLogout} className={styles.link}>
+  <span className={styles.icon}><FiLogOut /></span>
+  <span>Logout</span>
+</div>
       </nav>
     </aside>
   );
