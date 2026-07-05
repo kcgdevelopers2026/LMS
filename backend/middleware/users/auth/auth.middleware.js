@@ -2,10 +2,8 @@ import jwt from "jsonwebtoken";
 
 export const customerAuth = (req, res, next) => {
   try {
-    console.log("ALL COOKIES:", req.cookies); // 🔥 IMPORTANT
 
     const token = req.cookies?.customerToken;
-    console.log("TOKEN:", token);
 
     if (!token) {
       return res.status(401).json({
@@ -16,7 +14,6 @@ export const customerAuth = (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log("DECODED TOKEN:", decoded); // 🔥 VERY IMPORTANT
 
     if (!decoded || !decoded.id) {
       return res.status(401).json({
@@ -29,7 +26,6 @@ export const customerAuth = (req, res, next) => {
       id: decoded.id,
     };
 
-    console.log("REQ CUSTOMER:", req.customer); // 🔥 FINAL CHECK
 
     next();
   } catch (err) {
