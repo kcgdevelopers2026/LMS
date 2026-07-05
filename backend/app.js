@@ -41,7 +41,10 @@ const app = express();
 ========================= */
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://lms-7dlpet0s9-kcgdevelopers-2253s-projects.vercel.app"
+    ],
     credentials: true,
   })
 );
