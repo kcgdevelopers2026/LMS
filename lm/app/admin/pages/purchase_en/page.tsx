@@ -175,33 +175,31 @@ const formattedTime = now.toLocaleTimeString("en-IN", {
   minute: "2-digit",
 });
 
-// ✅ SAFE MESSAGE (proper structure + emojis)
-const message = [
-  "✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨",
-  "",
-  `📅 Date: ${formattedDate}`,
-  `⏰ Time: ${formattedTime}`,
-  "",
-  `👤 Customer: ${selectedCustomer?.name}`,
-  `🧾 Bill No: ${form.bill_number}`,
-  `💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}`,
-  `⭐ Loyalty Points: ${form.reward_points}`,
-  `💳 Card No: ${selectedCustomer?.card_no}`,
-  "",
-  "🙏 Thank you for shopping with us 💛"
-].join("\n");
+const message =
+`✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
 
+📅 Date: ${formattedDate}
+⏰ Time: ${formattedTime}
+
+👤 Customer: ${selectedCustomer?.name}
+🧾 Bill No: ${form.bill_number}
+💰 Amount: ₹${Number(form.amount).toLocaleString("en-IN")}
+⭐ Loyalty Points: ${form.reward_points}
+💳 Card No: ${selectedCustomer?.card_no}
+
+🙏 Thank you for shopping with us 💛`;
+
+// IMPORTANT FIX HERE 👇
 const phone = `91${mobile}`;
 
-// detect mobile or desktop
-const isMobile = /Android|iPhone/i.test(navigator.userAgent);
+const params = new URLSearchParams({
+  phone,
+  text: message
+});
 
-// ✅ ALWAYS OPEN WHATSAPP WEB / WA
-const url = isMobile
-  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-  : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+// force WhatsApp Web only
+const url = `https://web.whatsapp.com/send?${params.toString()}`;
 
-// ✅ FORCE NEW TAB ALWAYS
 window.open(url, "_blank", "noopener,noreferrer");
 
 
