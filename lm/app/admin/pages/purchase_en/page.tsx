@@ -169,7 +169,7 @@ export default function PurchaseEntryPage() {
 
 const now = new Date();
 
-const formattedDate = now.toLocaleDateString("en-IN"); // 05/07/2026
+const formattedDate = now.toLocaleDateString("en-IN");
 const formattedTime = now.toLocaleTimeString("en-IN", {
   hour: "2-digit",
   minute: "2-digit",
@@ -189,16 +189,14 @@ Your purchase has been successfully recorded 🎉
 ⭐ Loyalty Points Added: ${form.reward_points}
 💳 Card No: ${selectedCustomer?.card_no}
 
-Thank you for shopping with us 💛`;
+Thank you 💛`;
+
+// convert safely to base64 (fix emoji corruption)
+const encodedMessage = btoa(unescape(encodeURIComponent(message)));
 
 const phone = `91${mobile}`;
 
-// detect device
-const isMobile = /Android|iPhone/i.test(navigator.userAgent);
-
-const url = isMobile
-  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-  : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+const url = `https://web.whatsapp.com/send?phone=${phone}&text=${decodeURIComponent(escape(atob(encodedMessage)))}`;
 
 window.open(url, "_blank");
 
