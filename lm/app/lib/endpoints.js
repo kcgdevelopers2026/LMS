@@ -14,7 +14,8 @@ export const ENDPOINTS = {
 
   // ================= CUSTOMERS =================
   CUSTOMERS: `${API_BASE_URL}/api/customers`,
-  CUSTOMER_BY_ID: (id) => `${API_BASE_URL}/api/customers/${id}`,
+  CUSTOMER_BY_ID: (id) =>
+    `${API_BASE_URL}/api/customers/${id}`,
   CUSTOMER_POINTS_BY_MOBILE: (mobile) =>
     `${API_BASE_URL}/api/customers/points-by-mobile?mobile=${mobile}`,
 
@@ -23,20 +24,25 @@ export const ENDPOINTS = {
 
   // ================= SHOPS =================
   SHOPS: `${API_BASE_URL}/api/shops`,
-  SHOP_BY_ID: (id) => `${API_BASE_URL}/api/shops/${id}`,
+  SHOP_BY_ID: (id) =>
+    `${API_BASE_URL}/api/shops/${id}`,
 
   // ================= PURCHASES =================
   PURCHASES: `${API_BASE_URL}/api/purchases`,
   PURCHASE_BY_CUSTOMER: (id) =>
     `${API_BASE_URL}/api/purchases/customer/${id}`,
 
+  CUSTOMER_PURCHASES: `${API_BASE_URL}/api/customer/purchases`,
+
   // ================= REDEEMS =================
   REDEEMS: `${API_BASE_URL}/api/redeems`,
   REDEEM_BY_CUSTOMER: (id) =>
     `${API_BASE_URL}/api/redeems/customer/${id}`,
 
+  USER_REDEEMS: `${API_BASE_URL}/api/user/redeems`,
+
   // ================= REPORTS =================
-  REPORTS: `${API_BASE_URL}/admin/reports`,
+  REPORTS: `${API_BASE_URL}/api/admin/reports`,
 
   // ================= CONTESTS =================
   CONTESTS: `${API_BASE_URL}/api/admin/contests`,
@@ -46,20 +52,14 @@ export const ENDPOINTS = {
     `${API_BASE_URL}/api/admin/contests/winners/${id}`,
   CONTEST_CREATE_WINNER: `${API_BASE_URL}/api/admin/contests/winner`,
 
-  CUSTOMER_LOGIN: `${API_BASE_URL}/api/customer/login`,
-
   USER_CONTESTS_ACTIVE: `${API_BASE_URL}/api/user/contests/active`,
-USER_CONTEST_JOIN: `${API_BASE_URL}/api/user/contests/join`,
-CUSTOMER_HOME: `${API_BASE_URL}/api/customer/home`,
-CUSTOMER_PROFILE: `${API_BASE_URL}/api/customer/profile`,
-CUSTOMER_LOGOUT: `${API_BASE_URL}/api/customer/logout`,
-CUSTOMER_PURCHASES: `${API_BASE_URL}/api/customer/purchases`,
+  USER_CONTEST_JOIN: `${API_BASE_URL}/api/user/contests/join`,
 
-USER_REDEEMS: `${API_BASE_URL}/api/user/redeems`,
+  // ================= CUSTOMER =================
+  CUSTOMER_HOME: `${API_BASE_URL}/api/customer/home`,
+  CUSTOMER_PROFILE: `${API_BASE_URL}/api/customer/profile`,
+  CUSTOMER_REWARDS: `${API_BASE_URL}/api/customer/rewards`,
 
-CUSTOMER_REWARDS: `${API_BASE_URL}/api/customer/rewards`,
-CUSTOMER_HOME: `${API_BASE_URL}/api/customer/home`,
-
-
-
+  // ================= SHOPS / EXTRA =================
+  CUSTOMER_LOGOUT: `${API_BASE_URL}/api/customer/logout`,
 };
