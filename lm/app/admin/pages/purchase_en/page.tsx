@@ -175,6 +175,7 @@ const formattedTime = now.toLocaleTimeString("en-IN", {
   minute: "2-digit",
 });
 
+// ✅ SAFE MESSAGE (proper structure + emojis)
 const message = [
   "✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨",
   "",
@@ -192,9 +193,16 @@ const message = [
 
 const phone = `91${mobile}`;
 
-const url = `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+// detect mobile or desktop
+const isMobile = /Android|iPhone/i.test(navigator.userAgent);
 
-window.open(url, "_blank");
+// ✅ ALWAYS OPEN WHATSAPP WEB / WA
+const url = isMobile
+  ? `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+  : `https://web.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+
+// ✅ FORCE NEW TAB ALWAYS
+window.open(url, "_blank", "noopener,noreferrer");
 
 
   setMobile("");
