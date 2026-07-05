@@ -59,7 +59,7 @@ app.use("/api/purchases", purchaseRoutes);
 app.use("/api/shops", partnerShopRoutes);
 app.use("/api/redeems", adminRedeemRoutes);
 
-app.use("/dashboard", dashboardRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/admin/reports", reportRoutes);
 app.use("/api/admin", adminUnlockRoutes);
 
