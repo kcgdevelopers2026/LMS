@@ -5,9 +5,9 @@ import styles from "./customerde.module.css";
 import { Phone, CalendarDays, Mail, Pencil, X, Check } from "lucide-react";
 import { useParams } from "next/navigation";
 
-const API = "https://lms-7y23.onrender.com/api/customers";
-const PURCHASE_API = "https://lms-7y23.onrender.com/api/purchases/customer";
-const REDEEM_API = "https://lms-7y23.onrender.com/api/redeems/customer";
+import { ENDPOINTS } from "../../../../lib/endpoints.js"
+
+
 
 /* ================= TYPES ================= */
 type Customer = {
@@ -51,9 +51,9 @@ export default function CustomerDetails() {
     if (!id) return;
 
     (async () => {
-      const res = await fetch(`${API}/${id}`, {
-        credentials: "include",
-      });
+      const res = await fetch(ENDPOINTS.CUSTOMER_BY_ID(id), {
+  credentials: "include",
+});
 
       const data = await res.json();
 
@@ -72,9 +72,9 @@ export default function CustomerDetails() {
       try {
         setLoading(true);
 
-        const res = await fetch(`${PURCHASE_API}/${id}`, {
-          credentials: "include",
-        });
+        const res = await fetch(ENDPOINTS.PURCHASE_BY_CUSTOMER(id), {
+  credentials: "include",
+});
 
         const data = await res.json();
 
@@ -97,9 +97,9 @@ export default function CustomerDetails() {
     if (!id) return;
 
     (async () => {
-      const res = await fetch(`${REDEEM_API}/${id}`, {
-        credentials: "include",
-      });
+     const res = await fetch(ENDPOINTS.REDEEM_BY_CUSTOMER(id), {
+  credentials: "include",
+});
 
       const data = await res.json();
 

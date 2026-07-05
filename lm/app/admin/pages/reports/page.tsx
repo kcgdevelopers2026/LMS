@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import styles from "./report.module.css";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 type Report = any;
 
@@ -21,10 +22,12 @@ export default function Dashboard() {
       if (to) params.append("to", to);
       if (tier) params.append("category", tier);
 
-      const res = await fetch(
-        `https://lms-7y23.onrender.com/admin/reports?${params.toString()}`,
-        { credentials: "include" }
-      );
+    const res = await fetch(
+  `${ENDPOINTS.REPORTS}?${params.toString()}`,
+  {
+    credentials: "include",
+  }
+);
 
       const json = await res.json();
       setReport(json);

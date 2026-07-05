@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./partner.module.css";
 import { Pencil, Trash2, Plus } from "lucide-react";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 type Shop = {
   id?: string;
@@ -13,7 +14,6 @@ type Shop = {
   status: "Active" | "Inactive";
 };
 
-const API = "https://lms-7y23.onrender.com/api/shops";
 
 
 export default function PartnerShopsPage() {
@@ -35,7 +35,7 @@ const [password, setPassword] = useState("");
 
   /* ================= LOAD ================= */
   useEffect(() => {
-    fetch(API, {
+    fetch(ENDPOINTS.SHOPS, {
   credentials: "include",
 })
       .then((res) => res.json())
@@ -47,7 +47,7 @@ const [password, setPassword] = useState("");
   const handleAddShop = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const res = await fetch(API, {
+    const res = await fetch(ENDPOINTS.SHOPS, {
   method: "POST",
   credentials: "include",
   headers: {
@@ -73,7 +73,7 @@ const [password, setPassword] = useState("");
 
   const handleUnlock = async () => {
   try {
-    const res = await fetch("https://lms-7y23.onrender.com/api/admin/unlock", {
+    const res = await fetch(ENDPOINTS.ADMIN_UNLOCK, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -106,7 +106,7 @@ const [password, setPassword] = useState("");
   const handleSave = async () => {
     if (!editingId || !editForm) return;
 
-    const res = await fetch(`${API}/${editingId}`, {
+    const res = await fetch(ENDPOINTS.SHOP_BY_ID(editingId), {
   method: "PUT",
   credentials: "include",
   headers: {
@@ -134,7 +134,7 @@ const [password, setPassword] = useState("");
     if (!id) return;
     if (!confirm("Delete this shop?")) return;
 
-    await fetch(`${API}/${id}`, {
+    await fetch(ENDPOINTS.SHOP_BY_ID(id), {
   method: "DELETE",
   credentials: "include",
 });

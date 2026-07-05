@@ -2,10 +2,9 @@
 
 import { useEffect, useMemo, useState } from "react";
 import styles from "./purchase.module.css";
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
-const API_CUSTOMERS = "https://lms-7y23.onrender.com/api/customers";
-const API_SETTINGS = "https://lms-7y23.onrender.com/api/settings";
-const API_PURCHASE = "https://lms-7y23.onrender.com/api/purchases";
+
 
 type Customer = {
   id: string;
@@ -64,7 +63,9 @@ export default function PurchaseEntryPage() {
 
   /* ================= LOAD CUSTOMERS ================= */
   useEffect(() => {
-    fetch(API_CUSTOMERS, { credentials: "include" })
+    fetch(ENDPOINTS.CUSTOMERS, {
+  credentials: "include",
+})
       .then((res) => res.json())
       .then((data) => {
         const list = Array.isArray(data) ? data : data?.data;
@@ -75,7 +76,9 @@ export default function PurchaseEntryPage() {
 
   /* ================= LOAD SETTINGS ================= */
   useEffect(() => {
-    fetch(API_SETTINGS, { credentials: "include" })
+    fetch(ENDPOINTS.SETTINGS, {
+  credentials: "include",
+})
       .then((res) => res.json())
       .then((data) => setSettings(data))
       .catch(() => setSettings(null));
@@ -134,11 +137,11 @@ export default function PurchaseEntryPage() {
   const ok = window.confirm("Save purchase?");
   if (!ok) return;
 
-  const res = await fetch(API_PURCHASE, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify({
+  const res = await fetch(ENDPOINTS.PURCHASES, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  credentials: "include",
+  body: JSON.stringify({
       customer_id: selectedCustomer?.id,
       customer_name: selectedCustomer?.name,
       mobile,

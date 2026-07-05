@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./contest.module.css";
 
-import { API_BASE_URL } from "../../../lib/api.js"
+import { ENDPOINTS } from "../../../lib/endpoints.js";
 
 /* ================= TYPES ================= */
 
@@ -58,7 +58,7 @@ const [password, setPassword] = useState("");
 
   const handleUnlock = async () => {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/admin/unlock`, {
+    const res = await fetch(ENDPOINTS.ADMIN_UNLOCK, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +82,7 @@ const [password, setPassword] = useState("");
 };
 
   const loadContests = async () => {
-    const res = await fetch(`${API_BASE_URL}/api/admin/contests`, {
+    const res = await fetch(ENDPOINTS.CONTESTS, {
       credentials: "include",
     });
 
@@ -98,26 +98,28 @@ const [password, setPassword] = useState("");
   const exportAllParticipants = async () => {
   const allData: any[] = [];
 
-  for (const contest of contests) {
-    const res = await fetch(
-      `${API_BASE_URL}/api/admin/contests/entries/${contest.id}`,
-      { credentials: "include" }
-    );
-
-    const data = await res.json();
-
-    if (data.success) {
-      (data.data || []).forEach((e: any) => {
-        allData.push({
-          contest: contest.title,
-          name: e.customer?.name,
-          email: e.customer?.email,
-          mobile: e.customer?.mobile,
-          entry_date: e.created_at,
-        });
-      });
+for (const contest of contests) {
+  const res = await fetch(
+    ENDPOINTS.CONTEST_ENTRIES(contest.id),
+    {
+      credentials: "include",
     }
+  );
+
+  const data = await res.json();
+
+  if (data.success) {
+    (data.data || []).forEach((e: any) => {
+      allData.push({
+        contest: contest.title,
+        name: e.customer?.name,
+        email: e.customer?.email,
+        mobile: e.customer?.mobile,
+        entry_date: e.created_at,
+      });
+    });
   }
+}
 
   if (!allData.length) return;
 
@@ -141,120 +143,118 @@ const [password, setPassword] = useState("");
   a.click();
 };
 
-  /* ================= SELECT ================= */
+const selectContest = async (id: string) => {
+  setSelectedContest(id);
+  setTab("participants");
 
-  const selectContest = async (id: string) => {
-    setSelectedContest(id);
-    setTab("participants");
-
-    const [eRes, wRes] = await Promise.all([
-      fetch(`${API_BASE_URL}/api/admin/contests/entries/${id}`, {
-        credentials: "include",
-      }),
-      fetch(`${API_BASE_URL}/api/admin/contests/winners/${id}`, {
-        credentials: "include",
-      }),
-    ]);
-
-    const eData = await eRes.json();
-    const wData = await wRes.json();
-
-    if (eData.success) setEntries(eData.data || []);
-    if (wData.success) setWinners(wData.data ? [wData.data] : []);
-    else setWinners([]);
-  };
-
-  /* ================= CREATE ================= */
-
-  const createContest = async () => {
-    const res = await fetch(`${API_BASE_URL}/api/admin/contests`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+  const [eRes, wRes] = await Promise.all([
+    fetch(ENDPOINTS.CONTEST_ENTRIES(id), {
       credentials: "include",
-      body: JSON.stringify({
-        title,
-        description: desc,
-        prize_text: prize,
-        status: "active",
-        start_date: new Date().toISOString().split("T")[0],
-        end_date: new Date(Date.now() + 30 * 86400000)
-          .toISOString()
-          .split("T")[0],
-      }),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      setTitle("");
-      setDesc("");
-      setPrize("");
-      loadContests();
-    }
-  };
-
-  /* ================= SAVE WINNER ================= */
-
-  const saveWinner = async (entry: Entry) => {
-    const res = await fetch(`${API_BASE_URL}/api/admin/contests/winner`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    }),
+    fetch(ENDPOINTS.CONTEST_WINNERS(id), {
       credentials: "include",
-      body: JSON.stringify({
-        contest_id: selectedContest,
-        customer_id: entry.customer?.id,
-      }),
-    });
+    }),
+  ]);
 
-    const data = await res.json();
+  const eData = await eRes.json();
+  const wData = await wRes.json();
 
-    if (data.success) {
-      alert("Winner selected 🎉");
-      selectContest(selectedContest);
-    } else {
-      alert(data.message || "Error");
-    }
-  };
+  if (eData.success) setEntries(eData.data || []);
+  if (wData.success) setWinners(wData.data ? [wData.data] : []);
+  else setWinners([]);
+};
 
-  /* ================= EXPORT ================= */
+/* ================= CREATE ================= */
 
-  const exportCSV = (type: "participants" | "winners") => {
-    const data =
-      type === "participants"
-        ? entries.map((e) => ({
-            name: e.customer?.name,
-            email: e.customer?.email,
-            mobile: e.customer?.mobile,
-            entry_date: e.created_at,
-          }))
-        : winners.map((w) => ({
-            name: w.customer?.name,
-            email: w.customer?.email,
-            mobile: w.customer?.mobile,
-            contest: w.contest?.title,
-            
-          }));
+const createContest = async () => {
+  const res = await fetch(ENDPOINTS.CONTESTS, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      title,
+      description: desc,
+      prize_text: prize,
+      status: "active",
+      start_date: new Date().toISOString().split("T")[0],
+      end_date: new Date(Date.now() + 30 * 86400000)
+        .toISOString()
+        .split("T")[0],
+    }),
+  });
 
-    if (!data.length) return;
+  const data = await res.json();
 
-    const csv =
-      Object.keys(data[0]).join(",") +
-      "\n" +
-      data.map((r) =>
+  if (data.success) {
+    setTitle("");
+    setDesc("");
+    setPrize("");
+    loadContests();
+  }
+};
+
+/* ================= SAVE WINNER ================= */
+
+const saveWinner = async (entry: Entry) => {
+  const res = await fetch(ENDPOINTS.CONTEST_CREATE_WINNER, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({
+      contest_id: selectedContest,
+      customer_id: entry.customer?.id,
+    }),
+  });
+
+  const data = await res.json();
+
+  if (data.success) {
+    alert("Winner selected 🎉");
+    selectContest(selectedContest);
+  } else {
+    alert(data.message || "Error");
+  }
+};
+
+/* ================= EXPORT ================= */
+
+const exportCSV = (type: "participants" | "winners") => {
+  const data =
+    type === "participants"
+      ? entries.map((e) => ({
+          name: e.customer?.name,
+          email: e.customer?.email,
+          mobile: e.customer?.mobile,
+          entry_date: e.created_at,
+        }))
+      : winners.map((w) => ({
+          name: w.customer?.name,
+          email: w.customer?.email,
+          mobile: w.customer?.mobile,
+          contest: w.contest?.title,
+        }));
+
+  if (!data.length) return;
+
+  const csv =
+    Object.keys(data[0]).join(",") +
+    "\n" +
+    data
+      .map((r) =>
         Object.values(r)
           .map((v) => `"${v ?? ""}"`)
           .join(",")
-      ).join("\n");
+      )
+      .join("\n");
 
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${type}.csv`;
-    a.click();
-  };
-
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${type}.csv`;
+  a.click();
+};
 
   if (!unlocked) {
   return (
