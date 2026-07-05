@@ -167,6 +167,27 @@ export default function PurchaseEntryPage() {
 
   alert("Saved successfully!");
 
+  const message = `✨ K Chinnadurai Gold House Private Limited | Tuticorin ✨
+
+Dear ${selectedCustomer?.name},
+
+Your purchase has been successfully recorded. 🎉
+
+🧾 Bill No: ${form.bill_number}
+💰 Amount: ₹${form.amount}
+⭐ Loyalty Points Added: ${form.reward_points}
+💳 Card No: ${selectedCustomer?.card_no}
+
+Thank you for shopping with us 💛`;
+
+const phone = `91${mobile}`;
+
+window.open(
+  `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+  "_blank"
+);
+
+
   setMobile("");
   setSelectedCustomer(null);
   setProduct("CHAIN");
