@@ -36,12 +36,12 @@ export const loginAdmin = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,   // 🔥 FIXED
-      sameSite: "lax", // 🔥 FIXED
-      maxAge: 24 * 60 * 60 * 1000,
-    });
+   res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,        // MUST be true in production (HTTPS)
+  sameSite: "none",    // REQUIRED for cross-domain (Vercel ↔ Render)
+  maxAge: 24 * 60 * 60 * 1000,
+});
 
     return res.json({
       message: "Login successful",
