@@ -22,14 +22,14 @@ export default function AdminLogin() {
     try {
       setLoading(true);
 
-      const res = await fetch(`${API_BASE_URL}/admin/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(`${API_BASE_URL}/api/admin/login`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  credentials: "include",
+  body: JSON.stringify({ email, password }),
+});
 
       const data = await res.json();
 
