@@ -35,19 +35,15 @@ import userContestRoutes from "./routes/users/usercontest.routes.js";
    INIT APP
 ========================= */
 const app = express();
+app.set("trust proxy", 1);
 
 /* =========================
    MIDDLEWARES
 ========================= */
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://lms-sandy-one-43.vercel.app"
-    ],
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://lms-sandy-one-43.vercel.app",
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(cookieParser());
