@@ -2,7 +2,7 @@ import { supabase } from "../../../config/supabase.js";
 import jwt from "jsonwebtoken";
 
 /* =========================
-   CUSTOMER LOGIN
+   CUSTOMER LOGIN (JWT HEADER SYSTEM)
 ========================= */
 export const customerLogin = async (req, res) => {
   try {
@@ -35,10 +35,10 @@ export const customerLogin = async (req, res) => {
       });
     }
 
+    // ✅ CREATE JWT TOKEN
     const token = jwt.sign(
       {
         id: customer.id,
-        
       },
       process.env.JWT_SECRET,
       {
@@ -46,16 +46,15 @@ export const customerLogin = async (req, res) => {
       }
     );
 
-    res.cookie("customerToken", token, {
-  httpOnly: true,
-  secure: true,        // MUST be true on Render (HTTPS)
-  sameSite: "none",    // REQUIRED for Vercel ↔ Render
-  maxAge: 7 * 24 * 60 * 60 * 1000,
-});
+    // ❌ REMOVE COOKIE (IMPORTANT)
+    // res.cookie(...) ← DELETE THIS
 
+    // ✅ SEND TOKEN TO FRONTEND
     return res.json({
       success: true,
       message: "Login successful",
+      token,   // 👈 IMPORTANT CHANGE
+
       customer: {
         id: customer.id,
         name: customer.name,
@@ -74,15 +73,12 @@ export const customerLogin = async (req, res) => {
 };
 
 /* =========================
-   CUSTOMER LOGOUT
+   CUSTOMER LOGOUT (UPDATED)
 ========================= */
 export const customerLogout = (req, res) => {
-
-  res.clearCookie("customerToken");
-
+  // JWT system → no cookie to clear
   return res.json({
     success: true,
     message: "Logged out successfully",
   });
-
 };

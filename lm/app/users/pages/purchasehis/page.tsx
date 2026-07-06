@@ -36,22 +36,37 @@ export default function HistoryPage() {
 
 
   const fetchData = async () => {
-    try {
-     const res = await fetch(ENDPOINTS.CUSTOMER_PURCHASES, {
-  credentials: "include",
-});
+  try {
+    const token = localStorage.getItem("customerToken");
 
-
-      const result = await res.json();
-
-      if (result?.success) {
-        setPurchases(result.data || []);
-        setFiltered(result.data || []);
-      }
-    } catch (err) {
-      console.log(err);
+    if (!token) {
+      router.push("/users/auth/");
+      return;
     }
-  };
+
+    const res = await fetch(ENDPOINTS.CUSTOMER_PURCHASES, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (res.status === 401) {
+      router.push("/users/auth/");
+      return;
+    }
+
+    const result = await res.json();
+
+    if (result?.success) {
+      setPurchases(result.data || []);
+      setFiltered(result.data || []);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   /* FILTER LOGIC */
   useEffect(() => {

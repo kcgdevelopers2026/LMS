@@ -27,37 +27,41 @@ export default function ProfilePage() {
     fetchProfile();
   }, []);
 
-  const fetchProfile = async () => {
-    try {
-      const res = await fetch(ENDPOINTS.CUSTOMER_PROFILE, {
-        credentials: "include",
-      });
+const fetchProfile = async () => {
+  try {
+    const token = localStorage.getItem("customerToken");
 
-      const result = await res.json();
-
-      if (result?.success) {
-        setProfile(result.data);
-      }
-    } catch (err) {
-      console.log(err);
+    if (!token) {
+      router.push("/users/auth/");
+      return;
     }
-  };
+
+    const res = await fetch(ENDPOINTS.CUSTOMER_PROFILE, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+
+    const result = await res.json();
+
+    if (result?.success) {
+      setProfile(result.data);
+    } else {
+      router.push("/users/auth/");
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   /* =========================
      LOGOUT (REAL)
   ========================= */
-  const handleLogout = async () => {
-    try {
-      await fetch(ENDPOINTS.CUSTOMER_PROFILE, {
-        method: "POST",
-        credentials: "include",
-      });
-
-      router.push("/users/auth/");
-    } catch (err) {
-      console.log(err);
-    }
-  };
+const handleLogout = () => {
+  localStorage.removeItem("customerToken");
+  router.push("/users/auth/");
+};
 
   return (
     <main className={styles.container}>

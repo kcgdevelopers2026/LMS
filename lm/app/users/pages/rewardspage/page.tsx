@@ -25,10 +25,21 @@ export default function RewardsPage() {
     fetchRewards();
     fetchPoints();
   }, []);
-const fetchRewards = async () => {
+
+
+  const fetchRewards = async () => {
   try {
+    const token = localStorage.getItem("customerToken");
+
+    if (!token) {
+      return;
+    }
+
     const res = await fetch(ENDPOINTS.CUSTOMER_REWARDS, {
-      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
     });
 
     const result = await res.json();
@@ -41,10 +52,20 @@ const fetchRewards = async () => {
   }
 };
 
+
 const fetchPoints = async () => {
   try {
+    const token = localStorage.getItem("customerToken");
+
+    if (!token) {
+      return;
+    }
+
     const res = await fetch(ENDPOINTS.CUSTOMER_HOME, {
-      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
     });
 
     const result = await res.json();

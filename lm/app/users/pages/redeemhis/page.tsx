@@ -20,11 +20,21 @@ export default function HistoryPage() {
   useEffect(() => {
     fetchRedeems();
   }, []);
-
 const fetchRedeems = async () => {
   try {
+    const token = localStorage.getItem("customerToken");
+
+    if (!token) {
+      router.push("/users/auth/");
+      return;
+    }
+
     const res = await fetch(ENDPOINTS.USER_REDEEMS, {
-      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
     });
 
     if (res.status === 401) {

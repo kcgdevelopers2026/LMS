@@ -56,14 +56,16 @@ export default function ContestPage() {
       setSubmitting(true);
       setMessage("");
 
-      const res = await fetch(ENDPOINTS.USER_CONTEST_JOIN, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          contest_id: contestId,
-        }),
-      });
+     const res = await fetch(ENDPOINTS.USER_CONTEST_JOIN, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem("customerToken")}`
+  },
+  body: JSON.stringify({
+    contest_id: contestId,
+  }),
+});
 
       const data = await res.json();
       setSubmitting(false);

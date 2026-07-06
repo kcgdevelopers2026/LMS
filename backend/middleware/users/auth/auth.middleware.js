@@ -1,19 +1,23 @@
 import jwt from "jsonwebtoken";
 
+/* =========================
+   CUSTOMER AUTH MIDDLEWARE
+   (JWT FROM HEADER - MOBILE SAFE)
+========================= */
 export const customerAuth = (req, res, next) => {
   try {
+    const authHeader = req.headers.authorization;
 
-    const token = req.cookies?.customerToken;
-
-    if (!token) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         success: false,
         message: "Unauthorized - No token found",
       });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const token = authHeader.split(" ")[1];
 
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (!decoded || !decoded.id) {
       return res.status(401).json({
@@ -25,7 +29,6 @@ export const customerAuth = (req, res, next) => {
     req.customer = {
       id: decoded.id,
     };
-
 
     next();
   } catch (err) {

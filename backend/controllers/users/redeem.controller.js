@@ -2,7 +2,14 @@ import { supabase } from "../../config/supabase.js";
 
 export const getCustomerRedeems = async (req, res) => {
   try {
-    const customerId = req.customer.id;
+    const customerId = req.customer?.id;
+
+if (!customerId) {
+  return res.status(401).json({
+    success: false,
+    message: "Unauthorized",
+  });
+}
 
     const { data, error } = await supabase
       .from("redeems")

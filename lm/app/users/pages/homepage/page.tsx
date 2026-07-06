@@ -29,40 +29,46 @@ export default function Dashboard() {
   }, []);
 
 
+const fetchHome = async () => {
+  try {
+    const token = localStorage.getItem("customerToken");
 
-  const fetchHome = async () => {
-    try {
-      const res = await fetch(ENDPOINTS.CUSTOMER_HOME,
-        {
-          credentials: "include",
-        }
-      );
-
-      if (res.status === 401) {
-        router.push("/users/auth/");
-        return;
-      }
-
-      
-
-
-      const result = await res.json();
-
-      if (!result.success) {
-        alert(result.message);
-        return;
-      }
-
-      setCustomer(result.data.customer);
-      setCurrentPoints(result.data.current_points);
-      setRecentPurchases(result.data.recentPurchases || []);
-      setRecentRedeems(result.data.recentRedeems || []);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
+    if (!token) {
+      router.push("/users/auth/");
+      return;
     }
-  };
+
+    const res = await fetch(ENDPOINTS.CUSTOMER_HOME, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (res.status === 401) {
+      router.push("/users/auth/");
+      return;
+    }
+
+    const result = await res.json();
+
+    if (!result.success) {
+      alert(result.message);
+      return;
+    }
+
+    setCustomer(result.data.customer);
+    setCurrentPoints(result.data.current_points);
+    setRecentPurchases(result.data.recentPurchases || []);
+    setRecentRedeems(result.data.recentRedeems || []);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setLoading(false);
+  }
+};
+ 
 
     const formatCardNumber = (cardNo: string) => {
   if (!cardNo) return "";

@@ -2,10 +2,18 @@ import { supabase } from "../../config/supabase.js";
 
 /* =========================
    GET CUSTOMER PROFILE
+   (JWT HEADER SYSTEM)
 ========================= */
 export const getCustomerProfile = async (req, res) => {
   try {
-    const customerId = req.customer.id;
+    const customerId = req.customer?.id;
+
+    if (!customerId) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
 
     // GET CUSTOMER
     const { data: customer, error: cErr } = await supabase

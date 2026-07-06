@@ -14,43 +14,44 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = async () => {
-    setError("");
+ const handleLogin = async () => {
+  setError("");
 
-    if (mobile.length !== 10) {
-      setError("Please enter a valid 10-digit mobile number.");
+  if (mobile.length !== 10) {
+    setError("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const res = await fetch(ENDPOINTS.CUSTOMER_LOGIN, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ mobile }),
+    });
+
+    const result = await res.json();
+
+    if (!res.ok) {
+      setError(result.message || "Login failed");
       return;
     }
 
-    try {
-      setLoading(true);
+    // ✅ SAVE TOKEN (IMPORTANT FIX)
+    localStorage.setItem("customerToken", result.token);
 
-      const res = await fetch(ENDPOINTS.CUSTOMER_LOGIN, {
-  method: "POST",
-  credentials: "include",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    mobile,
-  }),
-});
+    router.push("/users/pages/homepage");
 
-      const result = await res.json();
-
-      if (!res.ok) {
-        setError(result.message || "Login failed");
-        return;
-      }
-
-      router.push("/users/pages/homepage");
-    } catch (err) {
-      console.error(err);
-      setError("Unable to connect to server.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err) {
+    console.error(err);
+    setError("Unable to connect to server.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <main className={styles.container}>
