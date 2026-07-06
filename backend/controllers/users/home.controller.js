@@ -1,3 +1,5 @@
+import { supabase } from "../../config/supabase.js";
+
 export const getCustomerHome = async (req, res) => {
   try {
     const customerId = req.customer?.id;
